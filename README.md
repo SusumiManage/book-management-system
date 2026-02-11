@@ -18,7 +18,7 @@ architecture**, and **Angular Material UI**.
 -   SQL Server / LocalDB
 -   JWT Authentication
 -   Repository + Service pattern
--   Integration and unit testing
+-   Integration and xUnit testing
 
 ### Frontend (Client)
 
@@ -28,6 +28,7 @@ architecture**, and **Angular Material UI**.
 -   HTTP Interceptors
 -   Route Guards
 -   Standalone components
+-   Testing using Karma
 
 ------------------------------------------------------------------------
 
@@ -46,13 +47,13 @@ architecture**, and **Angular Material UI**.
 -   View books list
 -   Book details page
 -   Search and filtering
+-   Restore book
 
 ### Borrowing System
 
 -   Borrow books
 -   Return books
 -   View active borrowings
--   Borrow history
 
 ------------------------------------------------------------------------
 
@@ -195,6 +196,7 @@ dotnet test
 
 Includes:
 - Integration tests
+- Create, Update and Delete workflow tests
 - Borrow/return workflow tests
 - Authentication scenarios
 
