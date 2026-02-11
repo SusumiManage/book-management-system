@@ -1,0 +1,64 @@
+<mat-card style="max-width: 420px; margin: 40px auto; padding: 12px;">
+    <mat-card-title style="margin-bottom: 10px;">Register</mat-card-title>
+
+    <div *ngIf="error" style="color:#b00020; margin-bottom: 10px;">
+        {{ error }}
+    </div>
+
+    <div *ngIf="message" style="color: green; margin-bottom: 10px;">
+        {{ message }}
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" style="display:grid; gap: 12px;">
+        <!-- Username -->
+        <mat-form-field appearance="outline">
+            <mat-label>Username</mat-label>
+            <input matInput type="text" formControlName="username" placeholder="Enter username"
+                autocomplete="username" />
+
+            <mat-error *ngIf="f.username.touched && f.username.hasError('required')">
+                Username is required.
+            </mat-error>
+            <mat-error *ngIf="f.username.touched && f.username.hasError('minlength')">
+                Username must be at least 3 characters.
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Password -->
+        <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" formControlName="password" placeholder="Enter password"
+                autocomplete="new-password" />
+
+            <mat-error *ngIf="f.password.touched && f.password.hasError('required')">
+                Password is required.
+            </mat-error>
+            <mat-error *ngIf="f.password.touched && f.password.hasError('minlength')">
+                Password must be at least 6 characters.
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Role -->
+        <mat-form-field appearance="outline">
+            <mat-label>Role</mat-label>
+            <mat-select formControlName="role">
+                <mat-option *ngFor="let r of roles" [value]="r">{{ r }}</mat-option>
+            </mat-select>
+
+            <mat-error *ngIf="f.role.touched && f.role.hasError('required')">
+                Role is required.
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Submit -->
+        <button mat-raised-button color="primary" type="submit" [disabled]="isSubmitting || form.invalid"
+            style="height: 44px;">
+            <span *ngIf="!isSubmitting">Register</span>
+
+            <span *ngIf="isSubmitting" style="display:flex; align-items:center; gap:10px;">
+                <mat-progress-spinner mode="indeterminate" diameter="18"></mat-progress-spinner>
+                Registering...
+            </span>
+        </button>
+    </form>
+</mat-card>

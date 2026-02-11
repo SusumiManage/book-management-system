@@ -1,0 +1,45 @@
+<mat-toolbar color="primary" style="gap:16px;">
+    <!-- App title -->
+    <a mat-button routerLink="/" style="font-weight:600; font-size:20px;">
+        Book Management System
+    </a>
+
+    <!-- Everyone logged in -->
+    <a mat-button *ngIf="auth.isLoggedIn()" routerLink="/books" routerLinkActive="active">
+        Book Details
+    </a>
+
+    <!-- Add Book -->
+    <a mat-button *ngIf="auth.isLoggedIn() && auth.isAdmin()" routerLink="/books/new" routerLinkActive="active">
+        Add Book
+    </a>
+
+    <!-- Overdue Books -->
+    <a mat-button *ngIf="auth.isLoggedIn() && auth.isAdmin()" routerLink="/overdue" routerLinkActive="active">
+        Overdue Books
+    </a>
+
+    <!-- New User Register -->
+    <a mat-button *ngIf="auth.isLoggedIn() && auth.isAdmin()" routerLink="/register" routerLinkActive="active">
+        New User Register
+    </a>
+
+    <!-- Spacer -->
+    <span style="flex:1 1 auto;"></span>
+
+    <!-- Logged in -->
+    <a mat-button *ngIf="!auth.isLoggedIn()" routerLink="/login" routerLinkActive="active">
+        Login
+    </a>
+
+    <!-- Role -->
+    <span *ngIf="auth.isLoggedIn()" style="margin-right:12px; font-size:14px;">
+        Role: <b>{{ auth.getUserRole() }}</b>
+    </span>
+
+    <!-- Logged out -->
+    <button mat-stroked-button color="warn" *ngIf="auth.isLoggedIn()" (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        Logout
+    </button>
+</mat-toolbar>

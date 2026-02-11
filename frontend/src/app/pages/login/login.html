@@ -1,0 +1,46 @@
+<mat-card style="max-width: 420px; margin: 24px auto; padding: 12px;">
+    <mat-card-title>Login</mat-card-title>
+
+    <div *ngIf="error" style="color:#b00020; margin-top: 10px;">
+        {{ error }}
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="login()" style="display:grid; gap: 12px; margin-top: 14px;">
+        <mat-form-field appearance="outline">
+            <mat-label>Username</mat-label>
+            <input matInput formControlName="username" autocomplete="username" />
+
+            <mat-error *ngIf="username?.hasError('required') && (username?.touched || username?.dirty)">
+                Username is required.
+            </mat-error>
+            <mat-error *ngIf="username?.hasError('minlength') && (username?.touched || username?.dirty)">
+                Username must be at least 3 characters.
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password"
+                autocomplete="current-password" />
+            <button mat-icon-button matSuffix type="button" (click)="togglePassword()"
+                [attr.aria-label]="'Toggle password visibility'" [attr.aria-pressed]="!hidePassword">
+                <mat-icon>{{ hidePassword ? 'visibility' : 'visibility_off' }}</mat-icon>
+            </button>
+            <mat-error *ngIf="password?.hasError('required') && (password?.touched || password?.dirty)">
+                Password is required.
+            </mat-error>
+            <mat-error *ngIf="password?.hasError('minlength') && (password?.touched || password?.dirty)">
+                Password must be at least 6 characters.
+            </mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="loading || form.invalid"
+            style="height:44px;">
+            <span *ngIf="!loading">Login</span>
+            <span *ngIf="loading" style="display:flex; align-items:center; gap:10px;">
+                <mat-progress-spinner mode="indeterminate" diameter="18"></mat-progress-spinner>
+                Logging in...
+            </span>
+        </button>
+    </form>
+</mat-card>

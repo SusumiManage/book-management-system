@@ -1,0 +1,53 @@
+<mat-card style="max-width: 900px; margin: 16px auto; padding: 12px;">
+    <!-- Loading -->
+    <mat-progress-bar *ngIf="loading" mode="indeterminate" style="margin-top: 10px;"></mat-progress-bar>
+
+    <!-- Error -->
+    <div *ngIf="error" style="color:#b00020; margin-top: 12px;">
+        {{ error }}
+    </div>
+
+    <!-- No data -->
+    <div *ngIf="!loading && !error && !book" style="margin-top: 12px; opacity: .8;">
+        No book data to display.
+    </div>
+
+    <!-- Details -->
+    <div *ngIf="book" style="margin-top: 12px;">
+        <h2 style="margin: 6px 0 10px 0;">{{ book.title }}</h2>
+
+        <div style="display:grid; gap: 10px;">
+            <div><b>Author:</b> {{ book.author }}</div>
+            <mat-divider></mat-divider>
+
+            <div><b>Genre:</b> {{ book.genre }}</div>
+            <mat-divider></mat-divider>
+
+            <div><b>Publication Year:</b> {{ book.publicationYear }}</div>
+            <mat-divider></mat-divider>
+
+            <div><b>ISBN:</b> {{ book.isbn }}</div>
+            <mat-divider></mat-divider>
+
+            <div><b>Price:</b> {{ book.price | currency:'GBP' }}</div>
+        </div>
+
+        <!-- Actions -->
+        <div style="display:flex; gap:10px; margin-top:16px; flex-wrap:wrap;">
+            <a mat-stroked-button routerLink="/books">
+                <mat-icon>arrow_back</mat-icon>
+                Back
+            </a>
+            <a *ngIf="auth.isLoggedIn() && auth.isAdmin() && !book.isDeleted && book.isAvailable" mat-raised-button
+                color="primary" [routerLink]="['/books', book.id, 'edit']">
+                <mat-icon>edit</mat-icon>
+                Edit
+            </a>
+            <button *ngIf="auth.isLoggedIn() && auth.isAdmin() && !book.isDeleted && book.isAvailable" mat-raised-button
+                color="warn" (click)="delete(book.id)">
+                <mat-icon>delete</mat-icon>
+                Delete
+            </button>
+        </div>
+    </div>
+</mat-card>

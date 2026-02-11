@@ -1,0 +1,17 @@
+.action-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: nowrap;
+}
+
+.action-row button {
+    background: #f5f7fa;
+    border-radius: 999px;
+    transition: all 0.15s ease;
+}
+
+.action-row button:hover:not([disabled]) {
+    background: #e3eaf5;
+    transform: translateY(-1px);
+}

@@ -1,0 +1,24 @@
+<mat-card style="max-width: 520px; margin: 80px auto; text-align:center; padding: 24px;">
+    <mat-icon style="font-size:64px; width:64px; height:64px; color:#b00020;">
+        error_outline
+    </mat-icon>
+
+    <h1 style="margin: 16px 0 6px 0;">404</h1>
+    <h2 style="margin: 0 0 12px 0;">Page Not Found</h2>
+
+    <p style="opacity:.8;">
+        The page you are looking for does not exist or has been moved.
+    </p>
+
+    <div style="margin-top: 20px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+        <a mat-raised-button color="primary" routerLink="/books">
+            <mat-icon>menu_book</mat-icon>
+            Go to Books
+        </a>
+
+        <a mat-stroked-button routerLink="/">
+            <mat-icon>home</mat-icon>
+            Home
+        </a>
+    </div>
+</mat-card>

@@ -1,0 +1,77 @@
+<mat-card style="max-width: 520px; margin: 16px auto; padding: 12px;">
+    <mat-card-title>{{ isEdit ? 'Edit Book' : 'Add New Book' }}</mat-card-title>
+
+    <mat-progress-bar *ngIf="loading" mode="indeterminate" style="margin-top: 10px;"></mat-progress-bar>
+
+    <div *ngIf="error" style="color:#b00020; margin-top: 12px;">
+        {{ error }}
+    </div>
+
+    <form #f="ngForm" (ngSubmit)="save()" style="display:grid; gap:12px; margin-top: 14px;">
+        <!-- Title -->
+        <mat-form-field appearance="outline">
+            <mat-label>Title</mat-label>
+            <input matInput name="title" [(ngModel)]="model.title" required minlength="2" #title="ngModel" />
+            <mat-error *ngIf="title.touched && title.hasError('required')">Title is required.</mat-error>
+            <mat-error *ngIf="title.touched && title.hasError('minlength')">Min 2 characters.</mat-error>
+        </mat-form-field>
+
+        <!-- Author -->
+        <mat-form-field appearance="outline">
+            <mat-label>Author</mat-label>
+            <input matInput name="author" [(ngModel)]="model.author" required minlength="2" #author="ngModel" />
+            <mat-error *ngIf="author.touched && author.hasError('required')">Author is required.</mat-error>
+            <mat-error *ngIf="author.touched && author.hasError('minlength')">Min 2 characters.</mat-error>
+        </mat-form-field>
+
+        <!-- Genre -->
+        <mat-form-field appearance="outline">
+            <mat-label>Genre</mat-label>
+            <input matInput name="genre" [(ngModel)]="model.genre" required minlength="2" #genre="ngModel" />
+            <mat-error *ngIf="genre.touched && genre.hasError('required')">Genre is required.</mat-error>
+            <mat-error *ngIf="genre.touched && genre.hasError('minlength')">Min 2 characters.</mat-error>
+        </mat-form-field>
+
+        <!-- Publication Year -->
+        <mat-form-field appearance="outline">
+            <mat-label>Publication Year</mat-label>
+            <input matInput type="number" name="publicationYear" [(ngModel)]="model.publicationYear" required min="0"
+                #publicationYear="ngModel" />
+            <mat-error *ngIf="publicationYear.touched && publicationYear.hasError('required')">
+                Publication year is required.
+            </mat-error>
+            <mat-error *ngIf="publicationYear.touched && publicationYear.hasError('min')">
+                Year must be 0 or greater.
+            </mat-error>
+        </mat-form-field>
+
+        <!-- ISBN -->
+        <mat-form-field appearance="outline">
+            <mat-label>ISBN</mat-label>
+            <input matInput name="isbn" [(ngModel)]="model.isbn" required minlength="4" #isbn="ngModel" />
+            <mat-error *ngIf="isbn.touched && isbn.hasError('required')">ISBN is required.</mat-error>
+            <mat-error *ngIf="isbn.touched && isbn.hasError('minlength')">Min 4 characters.</mat-error>
+        </mat-form-field>
+
+        <!-- Price -->
+        <mat-form-field appearance="outline">
+            <mat-label>Price</mat-label>
+            <input matInput type="number" name="price" [(ngModel)]="model.price" required min="0" #price="ngModel" />
+            <mat-error *ngIf="price.touched && price.hasError('required')">Price is required.</mat-error>
+            <mat-error *ngIf="price.touched && price.hasError('min')">Price cannot be negative.</mat-error>
+        </mat-form-field>
+
+        <!-- Actions -->
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top: 6px;">
+            <button mat-raised-button color="primary" type="submit" [disabled]="loading || f.invalid">
+                <mat-icon>{{ isEdit ? 'save' : 'add' }}</mat-icon>
+                {{ isEdit ? 'Update' : 'Create' }}
+            </button>
+
+            <a mat-stroked-button routerLink="/books">
+                <mat-icon>close</mat-icon>
+                Cancel
+            </a>
+        </div>
+    </form>
+</mat-card>
