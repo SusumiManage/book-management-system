@@ -81,11 +81,7 @@ export class BookDetailsComponent implements OnInit {
 
   delete(bookId: number): void {
     if (!bookId) return;
-    //if (!confirm('Delete this book?')) return;
-
-    //const confirmed = window.confirm(
-    //'Are you sure you want to delete this book? This action cannot be undone.'
-    //);
+    
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '420px',
       data: {
@@ -97,14 +93,12 @@ export class BookDetailsComponent implements OnInit {
       }
     });
 
-    //if (!dialogRef) return;
-
     dialogRef.afterClosed().subscribe((result) => {
       if (!result) return; // only proceed when user confirmed
 
       this.bookService.deleteBook(bookId).subscribe({
         next: () => {
-          this.router.navigate(['/books']);   // ✅ reload table data
+          this.router.navigate(['/books']);
         },
         error: () => alert('Failed to delete book')
       });
@@ -113,6 +107,7 @@ export class BookDetailsComponent implements OnInit {
 
 
 }
+
 
 
 
