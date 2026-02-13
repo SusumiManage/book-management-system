@@ -94,7 +94,7 @@ export class BookDetailsComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      if (!result) return; // only proceed when user confirmed
+      if (!result) return;
 
       this.bookService.deleteBook(bookId).subscribe({
         next: () => {
@@ -107,6 +107,7 @@ export class BookDetailsComponent implements OnInit {
 
 
 }
+
 
 
 
