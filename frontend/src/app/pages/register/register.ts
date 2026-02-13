@@ -16,8 +16,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-
-    // ✅ Angular Material
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
@@ -77,3 +75,4 @@ export class RegisterComponent {
     return this.form.controls;
   }
 }
+
