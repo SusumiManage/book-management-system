@@ -240,7 +240,7 @@ authentication - Angular interceptors for token handling
 ## User Guide
 The system user guide is available here:
 
-[Download User Guide](docs/User%20Guide.docx)
+[Download User Guide](docs/Book_Management_System_User_Guide.docx)
 
 
 ## Author
