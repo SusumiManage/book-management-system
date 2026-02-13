@@ -237,6 +237,12 @@ authentication - Angular interceptors for token handling
 
 ------------------------------------------------------------------------
 
+## User Guide
+The system user guide is available here:
+
+[Download User Guide](docs/User%20Guide.docx)
+
+
 ## Author
 
 **Udaya Susumi M Manage**\
