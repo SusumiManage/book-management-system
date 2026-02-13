@@ -12,8 +12,6 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [
     CommonModule,
     RouterLink,
-
-    // Material
     MatCardModule,
     MatButtonModule,
     MatIconModule
@@ -21,3 +19,4 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './not-found.html'
 })
 export class NotFoundComponent { }
+
