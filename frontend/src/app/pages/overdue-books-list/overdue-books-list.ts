@@ -84,7 +84,6 @@ export class OverdueBooksComponent implements OnInit {
         if (this.paged && this.pageNumber < this.paged.totalPages) { this.pageNumber++; this.load(); }
     }
 
-    // optional: return directly from overdue list
     returnBook(row: OverdueBorrowBooksDto): void {
         this.svc.returnBook({ bookId: row.bookId }).subscribe({
             next: () => this.load(),
@@ -92,3 +91,4 @@ export class OverdueBooksComponent implements OnInit {
         });
     }
 }
+
